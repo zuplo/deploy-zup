@@ -31,7 +31,7 @@ jobs:
         env:
           API_VERSION: ${{ env.GITHUB_SHA }}
           
-      - uses: zuplo/deploy-zup-action@v2
+      - uses: zuplo/deploy-zup-action@main
         with:
           project: my-zup
           environment: production
