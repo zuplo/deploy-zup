@@ -2,11 +2,9 @@
   "name": "deploy-zup-action",
   "version": "1.0.0",
   "description": "Github action to deploy to Zuplo",
-  "main": "./out/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "bundle": "ncc build ./dist/index.js -o out",
-    "release": "yarn build && yarn bundle"
+    "release": "ncc build ./index.js -o dist"
   },
   "repository": {
     "type": "git",
@@ -24,9 +22,7 @@
     "@zuplo/orchestration": "^3.65.0"
   },
   "devDependencies": {
-    "@types/node": "^16.11.25",
-    "@vercel/ncc": "^0.33.3",
-    "typescript": "4.5.5"
+    "@vercel/ncc": "^0.33.3"
   },
   "packageManager": "yarn@3.2.0"
 }
