@@ -3,6 +3,17 @@
 Usage:
 
 ```yaml
+- uses: zuplo/deploy-zup-action@main
+  with:
+    project: my-zup
+    environment: production
+    account_id: 4f59a390b9f139a4a82b757edd3c71dd
+    api_token: ${{ secrets.ZUPLO_CF_API_TOKEN }}
+```
+
+Full Example:
+
+```yaml
 name: Build & Release
 on: [push]
 
