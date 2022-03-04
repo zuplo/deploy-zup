@@ -1,0 +1,50 @@
+name: "Deploy Zup"
+description: "Deploys a Zup to Zuplo"
+
+inputs:
+  project: 
+    description: "The project name"
+    required: true
+  environment:
+    description: "The environment to deploy. Usually 'staging' or 'production'"
+    required: false
+    default: "production"
+  version:
+    description: "The version of the zup being deployed"
+    required: false
+    default: ${{ env.GITHUB_SHA }}
+  github_npm_token:
+    description: "NPM registry token with read permissions to install private Zuplo modules"
+    required: true
+  account_id:
+    description: "The guid of the account to deploy"
+    required: true 
+  api_token:
+    description: "The API token with deployment permission"
+    required: true 
+
+runs:
+  using: "composite"
+  steps:
+    - name: Building Zup
+      shell: bash
+      run: yarn zuplo build --platform worker
+      env:
+        API_VERSION: ${{inputs.version}}
+
+    - name: Setting up deployment
+      shell: bash
+      run: |
+        if ! hash zops &> /dev/null
+        then
+          npm config set @zuplo:registry https://npm.pkg.github.com
+          npm config set //npm.pkg.github.com/:_authToken ${{inputs.github_npm_token}}
+          npm install @zuplo/orchestration -g
+        fi
+
+    - name: Deploying (${{inputs.environment}})
+      shell: bash
+      run: zops app:deploy . --name ${{inputs.project}} --environment ${{inputs.environment}}
+      env:
+        CF_ACCOUNT_ID: ${{inputs.account_id}}
+        CF_API_TOKEN: ${{inputs.api_token}}
