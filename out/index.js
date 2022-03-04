@@ -1,6 +1,30 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 9283:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(2186));
+const orchestration_1 = __nccwpck_require__(7458);
+const project = core_1.default.getInput("project");
+const environment = core_1.default.getInput("environment");
+(0, orchestration_1.deploy)({
+    deploymentName: project,
+    environment,
+    sourceDirectory: process.cwd(),
+}).catch((error) => {
+    core_1.default.setFailed(error.message);
+});
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -16009,14 +16033,6 @@ module.exports = eval("require")("pino-pretty");
 
 /***/ }),
 
-/***/ 3576:
-/***/ ((module) => {
-
-module.exports = eval("require")("tslib");
-
-
-/***/ }),
-
 /***/ 4978:
 /***/ ((module) => {
 
@@ -18722,7 +18738,7 @@ module.exports = SonicBoom
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"deploy-zup-action","version":"1.0.0","description":"Github action to deploy to Zuplo","main":"./out/index.js","scripts":{"build":"tsc","bundle":"ncc build ./dist/index.js -o out"},"repository":{"type":"git","url":"git+https://github.com/zuplo/deploy-zup-action.git"},"author":"Zuplo, Inc.","license":"UNLICENSED","bugs":{"url":"https://github.com/zuplo/deploy-zup-action/issues"},"homepage":"https://github.com/zuplo/deploy-zup-action#readme","dependencies":{"@actions/core":"^1.6.0","@actions/github":"^5.0.0","@zuplo/orchestration":"^3.65.0"},"devDependencies":{"@types/node":"^16.11.25","@vercel/ncc":"^0.33.3","typescript":"4.5.5"},"packageManager":"yarn@3.2.0"}');
+module.exports = JSON.parse('{"name":"deploy-zup-action","version":"1.0.0","description":"Github action to deploy to Zuplo","main":"./out/index.js","scripts":{"build":"tsc","bundle":"ncc build ./dist/index.js -o out","release":"yarn build && yarn bundle"},"repository":{"type":"git","url":"git+https://github.com/zuplo/deploy-zup-action.git"},"author":"Zuplo, Inc.","license":"UNLICENSED","bugs":{"url":"https://github.com/zuplo/deploy-zup-action/issues"},"homepage":"https://github.com/zuplo/deploy-zup-action#readme","dependencies":{"@actions/core":"^1.6.0","@actions/github":"^5.0.0","@zuplo/orchestration":"^3.65.0"},"devDependencies":{"@types/node":"^16.11.25","@vercel/ncc":"^0.33.3","typescript":"4.5.5"},"packageManager":"yarn@3.2.0"}');
 
 /***/ })
 
@@ -18764,28 +18780,12 @@ module.exports = JSON.parse('{"name":"deploy-zup-action","version":"1.0.0","desc
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-var exports = __webpack_exports__;
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const tslib_1 = __nccwpck_require__(3576);
-const core_1 = (0, tslib_1.__importDefault)(__nccwpck_require__(2186));
-const orchestration_1 = __nccwpck_require__(7458);
-const project = core_1.default.getInput("project");
-const environment = core_1.default.getInput("environment");
-(0, orchestration_1.deploy)({
-    deploymentName: project,
-    environment,
-    sourceDirectory: process.cwd(),
-}).catch((error) => {
-    core_1.default.setFailed(error.message);
-});
-//# sourceMappingURL=index.js.map
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(9283);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;
