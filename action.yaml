@@ -9,6 +9,12 @@ inputs:
     description: "The environment to deploy. Usually 'staging' or 'production'"
     required: false
     default: "production"
+  account_id:
+    description: "The cloudflare account ID"
+    required: true
+  api_token:
+    description: "The cloudflare API Token"
+    required: true
 
 runs:
   using: "node16"

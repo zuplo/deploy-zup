@@ -28730,11 +28730,15 @@ const { deploy } = __nccwpck_require__(7458);
 try {
   const project = core.getInput("project");
   const environment = core.getInput("environment");
+  const accountId = core.getInput("account_id");
+  const apiToken = core.getInput("api_token");
 
   deploy({
     deploymentName: project,
     environment,
     sourceDirectory: process.cwd(),
+    accountId,
+    apiToken,
   })
     .then(() => {
       github.context.repo;
