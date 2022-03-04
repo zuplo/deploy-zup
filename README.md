@@ -24,16 +24,17 @@ jobs:
       - run: yarn test
       - run: yarn lint
 
-      # ::: IMPORTANT :::
       # Make sure to always build for workers before deploy
-      - run: yarn build --platform worker
+      # If you run `yarn test` before deploy, it may leave a 
+      # build for node which will cause the deploy to fail
+      - run: yarn build
         env:
           API_VERSION: ${{ env.GITHUB_SHA }}
+          
       - uses: zuplo/deploy-zup-action@v2
         with:
           project: my-zup
           environment: production
-        env:
-          CF_ACCOUNT_ID: 4f59a390b9f139a4a82b757edd3c71dd
-          CF_API_TOKEN: ${{ secrets.ZUPLO_CF_API_TOKEN }}
+          account_id: 4f59a390b9f139a4a82b757edd3c71dd
+          api_token: ${{ secrets.ZUPLO_CF_API_TOKEN }}
 ```
