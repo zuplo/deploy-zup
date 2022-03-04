@@ -190,9 +190,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zuplo/orchestration@npm:^3.65.0":
-  version: 3.65.0
-  resolution: "@zuplo/orchestration@npm:3.65.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40zuplo%2Forchestration%2F3.65.0%2F62e8c8404cfc8686b13878042affedb569eb4ece71dc95148ce4110dab97d892"
+"@zuplo/orchestration@npm:^3.66.0":
+  version: 3.66.0
+  resolution: "@zuplo/orchestration@npm:3.66.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40zuplo%2Forchestration%2F3.66.0%2F9bf2a6e5e2eae850964276d7108146657723be6acdac4fbf0ea51718e77b41d6"
   dependencies:
     arg: ^5.0.1
     chalk: ^4.1.2
@@ -201,7 +201,7 @@ __metadata:
     undici: ^4.14.1
   bin:
     zops: ./zops.js
-  checksum: 23678b3c9092fd2508728fdcbc0438b7c99e2daf7927004428dc0984201804a14a75232c5fa955ed4a0ced57d72a751ba60ec736bf173c69461d680570920635
+  checksum: a1a5aa38f8818eaa9a14721ae7ee210addbf2b39b546f59f4ef434db1bc6a709cf0040a9d45a704e83f5c4da5d725643e749ed94857ef7b603f59056ccc50039
   languageName: node
   linkType: hard
 
@@ -435,7 +435,7 @@ __metadata:
     "@actions/core": ^1.6.0
     "@actions/github": ^5.0.0
     "@vercel/ncc": ^0.33.3
-    "@zuplo/orchestration": ^3.65.0
+    "@zuplo/orchestration": ^3.66.0
   languageName: unknown
   linkType: soft
 

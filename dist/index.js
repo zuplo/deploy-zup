@@ -3814,24 +3814,25 @@ exports.deploy = void 0;
 const node_fs_1 = __importDefault(__nccwpck_require__(7561));
 const node_path_1 = __importDefault(__nccwpck_require__(9411));
 const constants_1 = __nccwpck_require__(7703);
-const env_1 = __importDefault(__nccwpck_require__(5808));
 const errors_1 = __nccwpck_require__(6900);
 const logger_1 = __nccwpck_require__(3955);
 const workers_api_1 = __nccwpck_require__(9162);
-async function deploy({ deploymentName, environment, sourceDirectory, }) {
-    if (!process.env.CF_ACCOUNT_ID) {
+async function deploy({ deploymentName, environment, sourceDirectory, accountId, apiToken, }) {
+    const accountIdentifier = accountId ?? process.env.CF_ACCOUNT_ID;
+    if (!accountIdentifier) {
         throw new errors_1.EnvironmentVariableRequiredError("CF_ACCOUNT_ID");
     }
-    if (!env_1.default.CF_API_TOKEN) {
+    const realApiToken = apiToken ?? process.env.CF_API_TOKEN;
+    if (!realApiToken) {
         throw new errors_1.EnvironmentVariableRequiredError("CF_API_TOKEN");
     }
     const scriptPath = node_path_1.default.join(sourceDirectory, constants_1.BUILD_OUTPUT_DIR, constants_1.MAIN_FILE_NAME);
     const workerScript = await node_fs_1.default.promises.readFile(scriptPath, "utf-8");
-    const api = new workers_api_1.WorkersApi(env_1.default.CF_API_TOKEN);
+    const api = new workers_api_1.WorkersApi(realApiToken);
     let output;
     try {
         output = await api.uploadWorker({
-            accountIdentifier: process.env.CF_ACCOUNT_ID,
+            accountIdentifier,
             scriptName: deploymentName,
             environment,
             workerScript,
@@ -3851,40 +3852,6 @@ async function deploy({ deploymentName, environment, sourceDirectory, }) {
 }
 exports.deploy = deploy;
 //# sourceMappingURL=deploy.js.map
-
-/***/ }),
-
-/***/ 5808:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-/* eslint-disable node/no-process-env */
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-class Environment {
-    get CF_ACCOUNT_ID() {
-        const val = process.env.CF_ACCOUNT_ID;
-        if (val === undefined) {
-            throw new EnvironmentalVariableRequiredError("CF_ACCOUNT_ID");
-        }
-        return val;
-    }
-    get CF_API_TOKEN() {
-        const val = process.env.CF_API_TOKEN;
-        if (val === undefined) {
-            throw new EnvironmentalVariableRequiredError("CF_API_TOKEN");
-        }
-        return val;
-    }
-}
-const env = new Environment();
-exports["default"] = env;
-class EnvironmentalVariableRequiredError extends Error {
-    constructor(name) {
-        super(`The environmental variable '${name}' is required.'`);
-    }
-}
-//# sourceMappingURL=env.js.map
 
 /***/ }),
 

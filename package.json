@@ -19,7 +19,7 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "@zuplo/orchestration": "^3.65.0"
+    "@zuplo/orchestration": "^3.66.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.3"
