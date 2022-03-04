@@ -18722,7 +18722,7 @@ module.exports = SonicBoom
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"deploy-zup-action","version":"1.0.0","description":"Github action to deploy to Zuplo","main":"index.js","scripts":{"build":"tsc","bundle":"ncc build ./dist/index.js -o out"},"repository":{"type":"git","url":"git+https://github.com/zuplo/deploy-zup-action.git"},"author":"Zuplo, Inc.","license":"UNLICENSED","bugs":{"url":"https://github.com/zuplo/deploy-zup-action/issues"},"homepage":"https://github.com/zuplo/deploy-zup-action#readme","dependencies":{"@actions/core":"^1.6.0","@actions/github":"^5.0.0","@zuplo/orchestration":"^3.65.0"},"devDependencies":{"@types/node":"^16.11.25","@vercel/ncc":"^0.33.3","typescript":"^4.6.2"},"packageManager":"yarn@3.2.0"}');
+module.exports = JSON.parse('{"name":"deploy-zup-action","version":"1.0.0","description":"Github action to deploy to Zuplo","main":"./out/index.js","scripts":{"build":"tsc","bundle":"ncc build ./dist/index.js -o out"},"repository":{"type":"git","url":"git+https://github.com/zuplo/deploy-zup-action.git"},"author":"Zuplo, Inc.","license":"UNLICENSED","bugs":{"url":"https://github.com/zuplo/deploy-zup-action/issues"},"homepage":"https://github.com/zuplo/deploy-zup-action#readme","dependencies":{"@actions/core":"^1.6.0","@actions/github":"^5.0.0","@zuplo/orchestration":"^3.65.0"},"devDependencies":{"@types/node":"^16.11.25","@vercel/ncc":"^0.33.3","typescript":"4.5.5"},"packageManager":"yarn@3.2.0"}');
 
 /***/ })
 
@@ -18772,7 +18772,7 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const tslib_1 = __nccwpck_require__(3576);
-const core_1 = tslib_1.__importDefault(__nccwpck_require__(2186));
+const core_1 = (0, tslib_1.__importDefault)(__nccwpck_require__(2186));
 const orchestration_1 = __nccwpck_require__(7458);
 const project = core_1.default.getInput("project");
 const environment = core_1.default.getInput("environment");
