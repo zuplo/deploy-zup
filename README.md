@@ -40,7 +40,8 @@ jobs:
       # build for node which will cause the deploy to fail
       - run: yarn build
         env:
-          API_VERSION: ${{ env.GITHUB_SHA }}
+          GIT_SHA: ${{ github.sha }}
+          API_VERSION: ${{ github.run_id }}
           
       - uses: zuplo/deploy-zup-action@main
         with:
