@@ -19,12 +19,21 @@ jobs:
           cache: "yarn"
 
       - run: yarn install
-    
-      - uses: zuplo/deploy-zup-action@v1
+
+      # Run tests or linting if you want
+      - run: yarn test
+      - run: yarn lint
+
+      # ::: IMPORTANT :::
+      # Make sure to always build for workers before deploy
+      - run: yarn build --platform worker
+        env:
+          API_VERSION: ${{ env.GITHUB_SHA }}
+      - uses: zuplo/deploy-zup-action@v2
         with:
           project: my-zup
           environment: production
-          github_npm_token: ${{ secrets.GH_NPM_PACKAGE_READ_TOKEN }}
-          account_id: 4f59a390b9f139a4a82b757edd3c71dd
-          api_token: ${{ secrets.ZUPLO_CF_API_TOKEN }}
+        env:
+          CF_ACCOUNT_ID: 4f59a390b9f139a4a82b757edd3c71dd
+          CF_API_TOKEN: ${{ secrets.ZUPLO_CF_API_TOKEN }}
 ```
