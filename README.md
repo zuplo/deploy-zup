@@ -27,22 +27,22 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "yarn"
+          cache: "npm"
 
-      - run: yarn install
+      - run: npm install
 
       # Run tests or linting if you want
-      - run: yarn test
-      - run: yarn lint
+      - run: npm run test
+      - run: npm run lint
 
       # Make sure to always build for workers before deploy
-      # If you run `yarn test` before deploy, it may leave a 
+      # If you run `npm run test` before deploy, it may leave a
       # build for node which will cause the deploy to fail
-      - run: yarn build
+      - run: npm run build
         env:
           GIT_SHA: ${{ github.sha }}
           API_VERSION: ${{ github.run_id }}
-          
+
       - uses: zuplo/deploy-zup-action@main
         with:
           project: my-zup
